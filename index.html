@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fuel Sense</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f0c040" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+          <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Fuel Sense</h1>
+        <p>Intelligent fuel analytics for your vehicles</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="upload-section">
+      <div class="upload-card">
+        <label class="upload-box" for="csv-input">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#f0c040" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+          </svg>
+          <span id="upload-label">Click to upload CSV or drag file here</span>
+          <span class="upload-hint">Supports Notion fuel log exports</span>
+          <input type="file" id="csv-input" accept=".csv,text/csv" hidden />
+        </label>
+        <div id="status-bar" class="status-bar hidden"></div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div id="report-header" class="report-header"></div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-vehicle="bike">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="5.5" cy="17.5" r="3.5"/>
+            <circle cx="18.5" cy="17.5" r="3.5"/>
+            <path d="M15 6h2l2 4M5.5 14h7.5M12 6l-1 8"/>
+          </svg>
+          Bike
+        </button>
+        <button class="tab-btn" data-vehicle="car">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 17h14v2H5zM5 11l1.5-4.5h11L19 11"/>
+            <circle cx="7" cy="15" r="1.5"/>
+            <circle cx="17" cy="15" r="1.5"/>
+            <path d="M5 11h14v4H5z"/>
+          </svg>
+          Car
+        </button>
+      </div>
+
+      <div id="stats-grid" class="stats-grid"></div>
+
+      <div id="suggestions-box" class="suggestions-box hidden">
+        <div class="section-header">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4caf7d" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4M12 8h.01"/>
+          </svg>
+          <h3>Smart Suggestions</h3>
+        </div>
+        <ul id="suggestions-list"></ul>
+      </div>
+
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>km/L Over Time</h3>
+          <canvas id="chart-efficiency"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Fuel Cost Per Fill</h3>
+          <canvas id="chart-cost"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>₹ Spent vs km Gained</h3>
+          <canvas id="chart-rupee-km"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Refill Frequency</h3>
+          <canvas id="chart-refill"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="parser.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
